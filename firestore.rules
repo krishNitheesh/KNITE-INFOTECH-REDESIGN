@@ -1,0 +1,42 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Default fallback: Block all operations globally
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Only allow public users to submit a contact form inquiry.
+    // They cannot read, edit, or delete existing submissions.
+    match /messages/{messageId} {
+      allow create: if request.resource.data.name is string 
+                    && request.resource.data.name.size() < 100
+                    && request.resource.data.email is string
+                    && request.resource.data.email.size() < 120
+                    && request.resource.data.phone is string
+                    && request.resource.data.phone.size() < 25
+                    && request.resource.data.message is string
+                    && request.resource.data.message.size() < 5000;
+      allow read, update, delete: if false;
+    }
+
+    // Rules for Client Portal registration & approval status checks
+    match /users/{emailId} {
+      allow create: if request.resource.data.status == "pending"
+                    && request.resource.data.email == emailId;
+      allow read: if request.auth != null && (
+                    request.auth.token.email.lower() == emailId.lower() 
+                    || request.auth.token.email.lower() == "kniteinfotech@gmail.com"
+                  );
+      allow update: if request.auth != null && (
+                    request.auth.token.email.lower() == "kniteinfotech@gmail.com"
+                    || (
+                      request.auth.token.email.lower() == emailId.lower()
+                      && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['messages'])
+                    )
+                  );
+      allow delete: if request.auth != null && request.auth.token.email.lower() == "kniteinfotech@gmail.com";
+    }
+  }
+}
