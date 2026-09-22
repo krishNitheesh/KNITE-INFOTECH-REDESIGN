@@ -76,8 +76,8 @@ export default function NavBar() {
             </div>
           </Link>
 
-          {/* Nav Items (Exact Original Contents: Services, Solutions, Courses, Clients) */}
-          <nav className="hidden lg:flex items-center gap-1 xl:gap-2 text-[15px] text-[#111827] font-normal">
+          {/* Nav Items (Exact Original Contents: Services, Solutions, Courses, Clients - larger size) */}
+          <nav className="hidden lg:flex items-center gap-2 xl:gap-4 text-[17px] text-[#111827] font-medium">
             
             {/* Services Dropdown */}
             <div 
@@ -86,12 +86,12 @@ export default function NavBar() {
             >
               <button 
                 onClick={() => setActiveDropdown(activeDropdown === 'services' ? null : 'services')}
-                className={`flex items-center gap-1.5 px-3 py-2 rounded transition-colors ${
-                  activeDropdown === 'services' ? 'text-[#e42528] font-medium' : 'text-[#111827] hover:text-[#e42528]'
+                className={`flex items-center gap-1.5 px-3.5 py-2 rounded-lg transition-colors ${
+                  activeDropdown === 'services' ? 'text-[#e42528] font-semibold' : 'text-[#111827] hover:text-[#e42528]'
                 }`}
               >
                 <span>Services</span>
-                <ChevronDown size={13} className={`transition-transform duration-200 ${activeDropdown === 'services' ? 'rotate-180 text-[#e42528]' : 'text-slate-500'}`} />
+                <ChevronDown size={15} className={`transition-transform duration-200 ${activeDropdown === 'services' ? 'rotate-180 text-[#e42528]' : 'text-slate-500'}`} />
               </button>
 
               {activeDropdown === 'services' && (
@@ -131,12 +131,12 @@ export default function NavBar() {
             >
               <button 
                 onClick={() => setActiveDropdown(activeDropdown === 'solutions' ? null : 'solutions')}
-                className={`flex items-center gap-1.5 px-3 py-2 rounded transition-colors ${
-                  activeDropdown === 'solutions' ? 'text-[#e42528] font-medium' : 'text-[#111827] hover:text-[#e42528]'
+                className={`flex items-center gap-1.5 px-3.5 py-2 rounded-lg transition-colors ${
+                  activeDropdown === 'solutions' ? 'text-[#e42528] font-semibold' : 'text-[#111827] hover:text-[#e42528]'
                 }`}
               >
                 <span>Solutions</span>
-                <ChevronDown size={13} className={`transition-transform duration-200 ${activeDropdown === 'solutions' ? 'rotate-180 text-[#e42528]' : 'text-slate-500'}`} />
+                <ChevronDown size={15} className={`transition-transform duration-200 ${activeDropdown === 'solutions' ? 'rotate-180 text-[#e42528]' : 'text-slate-500'}`} />
               </button>
 
               {activeDropdown === 'solutions' && (
@@ -176,12 +176,12 @@ export default function NavBar() {
             >
               <button 
                 onClick={() => setActiveDropdown(activeDropdown === 'courses' ? null : 'courses')}
-                className={`flex items-center gap-1.5 px-3 py-2 rounded transition-colors ${
-                  activeDropdown === 'courses' ? 'text-[#e42528] font-medium' : 'text-[#111827] hover:text-[#e42528]'
+                className={`flex items-center gap-1.5 px-3.5 py-2 rounded-lg transition-colors ${
+                  activeDropdown === 'courses' ? 'text-[#e42528] font-semibold' : 'text-[#111827] hover:text-[#e42528]'
                 }`}
               >
                 <span>Courses</span>
-                <ChevronDown size={13} className={`transition-transform duration-200 ${activeDropdown === 'courses' ? 'rotate-180 text-[#e42528]' : 'text-slate-500'}`} />
+                <ChevronDown size={15} className={`transition-transform duration-200 ${activeDropdown === 'courses' ? 'rotate-180 text-[#e42528]' : 'text-slate-500'}`} />
               </button>
 
               {activeDropdown === 'courses' && (
@@ -217,7 +217,7 @@ export default function NavBar() {
             {/* Clients Link */}
             <Link
               to={isHome ? '#clients' : '/#clients'}
-              className="px-3 py-2 rounded text-[#111827] hover:text-[#e42528] transition-colors"
+              className="px-3.5 py-2 rounded-lg text-[#111827] hover:text-[#e42528] transition-colors font-medium"
             >
               Clients
             </Link>
